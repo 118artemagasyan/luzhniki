@@ -20,8 +20,8 @@ export default function Home() {
           loop
           muted
           className="absolute w-full h-full object-cover"
-          src="/video/beach.mp4"
-        ></video>
+          poster="https://www.luzhniki.ru/media/images/DJI_0479.original.jpg"
+        />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white bg-black/40">
           <h1 className="text-5xl font-bold mb-6">Открой лето в Лужниках</h1>
           <button className="text-lg px-8 py-4 bg-white text-black rounded-xl hover:scale-110 transition-transform">
@@ -32,7 +32,16 @@ export default function Home() {
 
       {/* О Пляже */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
-        {["pool", "lounge"].map((img, idx) => (
+        {[
+          {
+            src: "https://www.luzhniki.ru/media/images/Frame_2.original.jpg",
+            text: "50-метровый бассейн на открытом воздухе",
+          },
+          {
+            src: "https://www.luzhniki.ru/media/images/Frame_8.original.jpg",
+            text: "Шезлонги, бары, летняя атмосфера",
+          },
+        ].map((item, idx) => (
           <motion.div
             key={idx}
             initial={{ opacity: 0, y: 50 }}
@@ -40,16 +49,8 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center hover:scale-105 transition-transform"
           >
-            <img
-              src={`/images/${img}.jpg`}
-              alt={img}
-              className="rounded-2xl mb-4"
-            />
-            <p className="text-center text-xl">
-              {img === "pool"
-                ? "50-метровый бассейн на открытом воздухе"
-                : "Шезлонги, бары, летняя атмосфера"}
-            </p>
+            <img src={item.src} alt="Пляж" className="rounded-2xl mb-4" />
+            <p className="text-center text-xl">{item.text}</p>
           </motion.div>
         ))}
       </section>
@@ -57,7 +58,11 @@ export default function Home() {
       {/* Атмосфера */}
       <section className="p-8 overflow-x-auto whitespace-nowrap">
         <div className="inline-flex space-x-4">
-          {["relax", "swim", "enjoy"].map((item, idx) => (
+          {[
+            { src: "https://www.luzhniki.ru/media/images/Frame_3.original.jpg", label: "Расслабься" },
+            { src: "https://www.luzhniki.ru/media/images/Frame_4.original.jpg", label: "Плавай" },
+            { src: "https://www.luzhniki.ru/media/images/Frame_5.original.jpg", label: "Наслаждайся летом" },
+          ].map((item, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -65,18 +70,8 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="min-w-[300px] hover:scale-105 transition-transform"
             >
-              <img
-                src={`/images/${item}.jpg`}
-                alt={item}
-                className="rounded-2xl mb-2"
-              />
-              <p className="text-center capitalize text-lg">
-                {item === "relax"
-                  ? "Расслабься"
-                  : item === "swim"
-                  ? "Плавай"
-                  : "Наслаждайся летом"}
-              </p>
+              <img src={item.src} alt={item.label} className="rounded-2xl mb-2" />
+              <p className="text-center capitalize text-lg">{item.label}</p>
             </motion.div>
           ))}
         </div>
